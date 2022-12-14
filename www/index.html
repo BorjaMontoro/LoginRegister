@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <script type="text/javascript">
+        let usuarios={"borja":{"password":"borja123","email":"bmontoroplaza.cf@iesesteveterradas.cat"}
+        ,"alex":{"password":"alex123","email":"amartinezfernandez.cf@iesesteveterradas.cat"}};
+        function fer_Login(){
+            correcto=true;
+            let usu=document.getElementById("username").value
+            let pass=document.getElementById("password").value
+            if (!usuarios[usu]){
+                alert("Has introducido mal el usuario i/o la contraseña")
+                correcto=false
+            }
+            if (correcto){
+                if (pass==usuarios[usu]["password"]){
+                    alert(`Has iniciado sesion correctamente\nUsuario: ${usu}\nCorreo: ${usuarios[usu]["email"]}`)
+                }
+                else{
+                    alert("Has introducido mal el usuario i/o la contraseña")
+                }
+            }
+        }
+            
+        function registra(){
+            let usu=document.getElementById("usernameReg").value
+            let email=document.getElementById("emailReg").value
+            let pass=document.getElementById("passwordReg").value
+            let passConf=document.getElementById("confirmPasswordReg").value
+            let correcto=true;
+            if (usuarios[usu]){
+                alert("Este usuario ya existe, registra otro usuario");
+            }else {
+                for (i in usuarios){
+                    if (usuarios[i]["email"]==email){
+                        alert("Ya existe un usuario con este email")
+                        correcto=false
+                        break;
+                    }
+                }
+                if (correcto){
+                    if (pass==passConf){
+                    usuarios[usu]={"password":pass,"email":email};
+                    alert("Usuario registrado correctamente");
+                }else{
+                    alert("Las contraseñas no coinciden");
+                }
+                }
+            }
+          
+
+
+        }
+
+    </script>
+</head>
+<body>
+    <h1 style="text-align: center;">Login</h1>
+    <p>User</p>
+    <input type="text" id="username">
+    <br>
+    <p>Password</p>
+    <input type="text" id="password">
+    <br>
+    <br>
+    <input type="button" value= "Login" onClick=fer_Login();return false;>
+    <hr>
+    <h1 style="text-align: center;">Register</h1>
+    <p>User</p>
+    <input type="text" id="usernameReg">
+    <br>
+    <p>Email</p>
+    <input type="text" id="emailReg">
+    <br>
+    <p>Password</p>
+    <input type="text" id="passwordReg">
+    <br>
+    <p>Confirmar Password</p>
+    <input type="text" id="confirmPasswordReg">
+    <br>
+    <br>
+    <input type="button" value= "Register" onClick=registra();return false;></input>
+
+</body>
+</html>
